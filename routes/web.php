@@ -1,0 +1,79 @@
+<?php
+
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VehicletypeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserRegistrationController;
+use App\Http\Controllers\BankController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('auth.login');
+});
+
+// Route::get('/vehicletype', [VehicletypeController::class, 'index'] {
+//     return view('vehicletype');
+// })->middleware(['auth'])->name('vehicletype');
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::group(['middleware' => ['auth']], function() {
+    // Route::resource('/roles', RoleController::class);
+    // Route::resource('/users', UserController::class);
+    Route::resource('/vehicletype', VehicletypeController::class);
+    // Route::resource('/user-registration', UserRegistrationController::class)->name('user-registration');;
+   
+    // Route::resource('vehicletype', VehicletypeController::class);
+});
+
+
+Route::get('/user-registration', [UserRegistrationController::class, 'create'])
+                ->middleware('auth')
+                ->name('user-registration');
+
+Route::post('/user-registration', [UserRegistrationController::class, 'store'])
+                ->middleware('auth');
+
+  Route::get('/user-registration', [UserRegistrationController::class, 'index'])
+  ->middleware('auth')
+  ->name('user-registration');
+
+  Route::get('/edit-user/{user}', [UserRegistrationController::class, 'edit'])
+  ->middleware('auth')
+  ->name('edit-user');
+
+  Route::post('/edit-user/{user}/update', [UserRegistrationController::class, 'update'])
+  ->middleware('auth')
+  ->name('update-user');
+
+  Route::post('/delete-user/{id}', [UserRegistrationController::class, 'destroy'])
+  ->middleware('auth')
+  ->name('delete-user');
+  
+  Route::get('file-import-export', [BankController::class, 'fileImportExport']);
+Route::post('file-import', [BankController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [BankController::class, 'fileExport'])->name('file-export');
+
+Route::post('/vehicletype/create', [VehicletypeController::class, 'create'])
+                ->middleware('auth')
+                ->name('vtCreate');
+
+
+require __DIR__.'/auth.php';
