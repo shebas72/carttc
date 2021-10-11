@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserRegistrationController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\IncomingCarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,14 +67,33 @@ Route::post('/user-registration', [UserRegistrationController::class, 'store'])
   Route::post('/delete-user/{id}', [UserRegistrationController::class, 'destroy'])
   ->middleware('auth')
   ->name('delete-user');
+
+  Route::get('/file-import-export', [BankController::class, 'index'])
+  ->middleware('auth')
+ -> name('file-import-export');;
   
-  Route::get('file-import-export', [BankController::class, 'fileImportExport']);
+  Route::get('file-import-export', [BankController::class, 'fileImportExport'])
+  ->middleware('auth')
+ -> name('file-import-export');;
 Route::post('file-import', [BankController::class, 'fileImport'])->name('file-import');
 Route::get('file-export', [BankController::class, 'fileExport'])->name('file-export');
+Route::get('/edit-bank/{bank}', [BankController::class, 'edit'])
+->middleware('auth')
+->name('edit-bank');
+Route::post('file-import-export/{id}', [BankController::class, 'destroy'])
+->middleware('auth')
+->name('delete-bank');
+
+Route::post('/edit-bank/{bank}/update', [BankController::class, 'update'])
+->middleware('auth')
+->name('update-bank');
 
 Route::post('/vehicletype/create', [VehicletypeController::class, 'create'])
                 ->middleware('auth')
                 ->name('vtCreate');
+
+Route::resource('/incoming', IncomingCarController::class)
+->middleware('auth');
 
 
 require __DIR__.'/auth.php';

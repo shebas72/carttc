@@ -17,8 +17,13 @@ class BankController extends Controller
      */
     public function index()
     {
-        //
+        return view('bank.file-import',compact('banks'));
     }
+
+    // public function newindex()
+    // {
+    //     return view('incoming');
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -60,7 +65,7 @@ class BankController extends Controller
      */
     public function edit(bank $bank)
     {
-        //
+        return view('bank.edit-bank', compact('bank'));
     }
 
     /**
@@ -70,9 +75,21 @@ class BankController extends Controller
      * @param  \App\Models\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, bank $bank)
+    public function update(Request $request, $id)
     {
-        //
+        $bank = Bank::findOrFail($id);
+         
+        $bank->License = $request->License;
+        $bank->Model = $request->Model;
+        $bank->Year = $request->Year;
+        $bank->Chasis_number = $request->Chasis_number;
+        $bank->Bank_Name = $request->Bank_Name;
+        $bank->Color = $request->Color;
+        $bank->Condition = $request->Condition;
+        $bank->Key_Available = $request->Key_Available;
+      
+        $bank->save();
+                 return redirect('/file-import-export')->with('completed', 'User has been updated');
     }
 
     /**
@@ -81,9 +98,14 @@ class BankController extends Controller
      * @param  \App\Models\bank  $bank
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bank $bank)
+    public function destroy(bank $bank, $id)
     {
-        //
+        $bank = bank::findOrFail($id);
+
+        $bank->delete();
+        return redirect()->route('file-import-export')
+        ->with('success','car detail deleted successfully');
+    
     }
 
     public function fileImportExport()

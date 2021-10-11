@@ -41,6 +41,7 @@
                             <x-input id="password" class="form-control"
                                             type="password"
                                             name="password"
+                                            minlength="9"
                                             required autocomplete="new-password" />
                                             </div>
                         </div>
@@ -51,6 +52,7 @@
                             <div class="col-lg-6">
                             <x-input id="password_confirmation" class="form-control"
                                             type="password"
+                                            minlength="9"
                                             name="password_confirmation" required />
                             </div>
                         </div>

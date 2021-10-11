@@ -76,7 +76,7 @@
 									            </a>
 									        </li>
 									        <li>
-									            <a class="nav-link" href="incoming.html">
+									            <a class="nav-link" href="#">
 									                Incoming
 									            </a>
 									        </li>
@@ -225,8 +225,8 @@
 
 									
 									<li>
-									    <a class="nav-link" href="file-import-export">
-									      Bank
+									    <a class="nav-link" href="{{ route('file-import-export') }}">
+									      Vendors
 									    </a>
 									  
 									</li>

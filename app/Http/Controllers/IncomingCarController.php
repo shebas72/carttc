@@ -5,16 +5,16 @@ use App\Models\bank;
 
 use Illuminate\Http\Request;
 
-class incomingCar extends Controller
+class IncomingCarController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        return view('incoming');
+        return view('incoming',compact('banks'));
     }
 
     /**
