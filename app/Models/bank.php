@@ -16,6 +16,7 @@ class bank extends Model
         'Bank_Name',
         'Color',
         'Condition',
-        'Key_Available'
+        'Key_Available',
+        'venid'
     ];
 }

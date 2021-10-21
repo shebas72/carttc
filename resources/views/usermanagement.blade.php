@@ -61,9 +61,9 @@
                             <label class="col-lg-3 control-label text-lg-right pt-2" for="inputDefault">Select Role</label>
                             <div class="col-lg-6">
                                 <select class="form-control mb-3" name="role" required>
-                                    <option value="Admin">Admin</option>
-                                    <option value="Driver">Driver</option>
-                                    <option value="Customer">Customer</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Driver</option>
+                                    <option value="3">Customer</option>
                                 </select>
                          
                             </div>

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Imports;
-
+use Auth;
 use App\Models\Bank;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -15,6 +15,7 @@ class BanksImport implements ToModel
     */
     public function model(array $row)
     {
+        $get_venid= Auth::user()->email;
         return new Bank([
             'License'     => $row[0],
             'Model'    => $row[1],
@@ -23,7 +24,8 @@ class BanksImport implements ToModel
             'Bank_Name'    => $row[4],
             'Color'    => $row[5],
             'Condition'    => $row[6],
-            'Key_Available'    => $row[7]
+            'Key_Available'    => $row[7],
+            'venid' => $get_venid
             
         ]);
     }

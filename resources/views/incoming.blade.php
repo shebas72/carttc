@@ -42,8 +42,9 @@
                                
                                 <th>Condition</th>
                                 <th>Key</th>
+                                
+                                <th>Added by</th>
                                 <th>Actions</th>
-                              
                             </tr>
                         </thead>
                         <tbody>
@@ -60,6 +61,7 @@
                             <td>{{ $bank->Color }}</td>
                             <td>{{ $bank->Condition }}</td>
                             <td>{{ $bank->Key_Available }}</td>
+                            <td>{{ $bank->venid }}</td>
                            
                             <td><a href="{{ route('edit-bank',$bank->id) }}"><i class="fas fa-pencil-alt"></i> edit</a>&nbsp;&nbsp;
                                 <form action="{{ route('delete-bank',$bank->id) }}" method="Post">

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\BanksImport;
 use App\Exports\BanksExport;
+use DB;
+use Auth;
 
 class BankController extends Controller
 {
@@ -78,7 +80,7 @@ class BankController extends Controller
     public function update(Request $request, $id)
     {
         $bank = Bank::findOrFail($id);
-         
+        $get_venid= Auth::user()->email;
         $bank->License = $request->License;
         $bank->Model = $request->Model;
         $bank->Year = $request->Year;
@@ -87,6 +89,7 @@ class BankController extends Controller
         $bank->Color = $request->Color;
         $bank->Condition = $request->Condition;
         $bank->Key_Available = $request->Key_Available;
+        $bank->venid = $request->$get_venid;
       
         $bank->save();
                  return redirect('/file-import-export')->with('completed', 'User has been updated');
@@ -108,11 +111,28 @@ class BankController extends Controller
     
     }
 
+    public function deleteAll(Request $request)
+
+    {
+
+        $ids = $request->ids;
+
+        DB::table("banks")->whereIn('id',explode(",",$ids))->delete();
+
+        return response()->json(['success'=>"Products Deleted successfully."]);
+
+    }
+
     public function fileImportExport()
     {
         $banks = Bank::all();
-
-        // return view('bank.file-import',compact('banks'));
+      $sameuser = Auth::user()->email;
+        // $banks = DB::table('banks')
+        // ->where('venid', 'like', '$sameuser')
+        // ->get();
+        $banks = DB::table('banks')
+        ->whereIn('venid', [$sameuser])
+        ->get();
        return view('bank.file-import',compact('banks'));
     }
     public function fileImport(Request $request) 

@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\bank;
 
+use App\Models\bank;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\BanksImport;
+use App\Exports\BanksExport;
+use DB;
 
 class IncomingCarController extends Controller
 {
@@ -12,8 +16,9 @@ class IncomingCarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(request $request)
+    public function index()
     {
+        $banks = Bank::all();
         return view('incoming',compact('banks'));
     }
 

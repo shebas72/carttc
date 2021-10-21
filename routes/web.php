@@ -83,6 +83,11 @@ Route::get('/edit-bank/{bank}', [BankController::class, 'edit'])
 Route::post('file-import-export/{id}', [BankController::class, 'destroy'])
 ->middleware('auth')
 ->name('delete-bank');
+Route::delete('myproductsDeleteAll', [BankController::class, 'deleteAll'])
+->middleware('auth')
+->name('myproductsDeleteAll');
+
+
 
 Route::post('/edit-bank/{bank}/update', [BankController::class, 'update'])
 ->middleware('auth')
@@ -92,8 +97,9 @@ Route::post('/vehicletype/create', [VehicletypeController::class, 'create'])
                 ->middleware('auth')
                 ->name('vtCreate');
 
-Route::resource('/incoming', IncomingCarController::class)
-->middleware('auth');
+Route::get('/incoming', [IncomingCarController::class, 'index'])
+->middleware('auth')
+->name('incoming');
 
 
 require __DIR__.'/auth.php';

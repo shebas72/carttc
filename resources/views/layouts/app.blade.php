@@ -57,6 +57,8 @@
 					<div class="header-nav collapse">
 						<div class="header-nav-main header-nav-main-effect-1 header-nav-main-sub-effect-1 header-nav-main-square">
 							<nav>
+								<?php $show_menu = Auth::user()->is_permission; ?>		
+								@if($show_menu == 1)				
 								<ul class="nav nav-pills" id="mainNav">
 								
 									<li>
@@ -76,7 +78,7 @@
 									            </a>
 									        </li>
 									        <li>
-									            <a class="nav-link" href="#">
+									            <a class="nav-link" href="{{ route('incoming') }}">
 									                Incoming
 									            </a>
 									        </li>
@@ -124,104 +126,7 @@
 									</li>
 
 								
-									<li class="dropdown">
-									    <a class="nav-link dropdown-toggle" href="#">
-									        Configuration
-									    </a>
-									    <ul class="dropdown-menu">
-									      
-									        <li>
-									            <a class="nav-link" href="vehicletype">
-									                Vehicle Models
-									            </a>
-									        </li>
-									        <li>
-									            <a class="nav-link" href="brands.html">
-									                Brands
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="service-types.html">
-									               Service Types
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="parking-yards.html">
-									              Parking Yards
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="contract-types.html">
-									              Contract Types
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="parking-zone.html">
-									              Parking Zone
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="parking-lane.html">
-									              Parking Lane
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="parking-bay.html">
-									              Parking Bay
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="yard-gates.html">
-									              Yard Gates
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="checkpoint-category.html">
-									              Checkpoint Category
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="vehicle-status.html">
-									            Vehicle Status  
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="checkpoints.html">
-									              Checkpoints
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="checkpoint-forms.html">
-									              Checkpoint Forms
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="vehicle-type.html">
-									              Vehicle Type
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="color.html">
-									             Color 
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="condition.html">
-									            Condition  
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="id-type.html">
-									              ID Type
-									            </a>
-									        </li>
-											<li>
-									            <a class="nav-link" href="vehicle-tags.html">
-									           Vehicle Tags   
-									            </a>
-									        </li>
-									    </ul>
-									</li>
+							
 
 									
 									<li>
@@ -235,6 +140,7 @@
 									        
 									
 								</ul>
+								@endif 
 							</nav>
 						</div>
 					</div>
